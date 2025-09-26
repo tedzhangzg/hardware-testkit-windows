@@ -9,7 +9,7 @@
 Write-Host "Starting script-testkit.ps1 ..."
 
 # include
-. ".\functions.ps1"
+# . ".\functions.ps1"
 
 # var
 # $var = ""

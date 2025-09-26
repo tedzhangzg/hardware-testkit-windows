@@ -12,23 +12,23 @@
 
 Write-Host "Starting script-init.ps1 ..."
 
-# define ordered hash table of filenames and GitHub links
-$odhashtb_filesghlinks = [ordered]@{
-    "functions.ps1" = "https://raw.githubusercontent.com/tedzhangzg/library-script-windows/main/functions.ps1"
-}
+# # define ordered hash table of filenames and GitHub links
+# $odhashtb_filesghlinks = [ordered]@{
+#     "functions.ps1" = "https://raw.githubusercontent.com/tedzhangzg/software-install-windows/main/functions.ps1"
+# }
 
-# loop over all key value pairs
-foreach ($key in $odhashtb_filesghlinks.Keys) {
-    $ghlink = $($odhashtb_filesghlinks[$key])
-    # check, download
-    if (-Not (Test-Path -Path "$key")) {
-        curl.exe -L -O "$ghlink"
-    }
-}
+# # loop over all key value pairs
+# foreach ($key in $odhashtb_filesghlinks.Keys) {
+#     $ghlink = $($odhashtb_filesghlinks[$key])
+#     # check, download
+#     if (-Not (Test-Path -Path "$key")) {
+#         curl.exe -L -O "$ghlink"
+#     }
+# }
 
-# include
-. ".\functions.ps1"
-. ".\urls.ps1"
+# # include
+# . ".\functions.ps1"
+# . ".\urls.ps1"
 
 # clear screen
 Clear-Host
