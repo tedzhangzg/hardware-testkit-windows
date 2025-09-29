@@ -100,7 +100,7 @@ if (Test-Path -Path "CDI") {
 }
 # 
 # extract CrystalDiskInfo
-Get-ChildItem -Filter "Crystal*.zip" | ForEach-Object { .\SevenZip\7za.exe x $_.FullName -o"CDI" }
+Get-ChildItem -Filter "Crystal*.zip" | ForEach-Object { .\SevenZip\7za.exe x $_.FullName -o"CDI" -aoa }
 # Get-ChildItem -Filter "Crystal*.zip" | Expand-Archive -DestinationPath "CDI" -Force
 # 
 Start-Process -FilePath "CDI\DiskInfo64.exe" -Wait
@@ -121,7 +121,10 @@ pause
 Write-Host ""
 
 # prep wordpad
-Get-ChildItem -Filter "wordpad.zip" | ForEach-Object { .\SevenZip\7za.exe x $_.FullName -o"$env:ProgramFiles\Windows NT\Accessories" }
+Get-ChildItem -Filter "wordpad.zip" | ForEach-Object {
+    .\SevenZip\7za.exe x $_.FullName "Accessories\*" -o"$env:ProgramFiles\Windows NT" -aoa
+    .\SevenZip\7za.exe x $_.FullName "Wordpad.lnk" -o"$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories" -aoa
+}
 # 
 Write-Host "Keyboard Test (manual): Type each key manually"
 Start-Process -FilePath "$env:ProgramFiles\Windows NT\Accessories\wordpad.exe" -ArgumentList "test.docx"
@@ -139,7 +142,7 @@ Write-Host ""
 Write-Host "Speakers and Microphone"
 # 
 # extract Audacity
-Get-ChildItem -Filter "audacity*.zip" | ForEach-Object { .\SevenZip\7za.exe x $_.FullName -o"ADCT" }
+Get-ChildItem -Filter "audacity*.zip" | ForEach-Object { .\SevenZip\7za.exe x $_.FullName -o"ADCT" -aoa }
 # Get-ChildItem -Filter "audacity*.zip" | Expand-Archive -DestinationPath "ADCT" -Force
 $subfoldername_audacity = (Get-ChildItem -Path "ADCT").Name
 # 
